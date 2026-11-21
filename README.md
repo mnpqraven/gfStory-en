@@ -4,6 +4,13 @@ A Girls's Frontline cutscene simulator.
 
 ## How to build
 
+## NixOS
+
+- jump into the development shell with `nix develop` or `direnv allow`
+- `just build` builds everything
+
+## Others
+
 Build dependencies:
 
 - python
@@ -99,7 +106,7 @@ Restart your terminal and make sure that `~/.local/bin` is in your `$PATH`.
 ### Build
 
 To build the site, run `build.sh` in the root of the repository.
-> **Note**  
+> **Note**
 > If the game has been updated since the last time you ran the script, delete the `output` directory in `unpack/downloader/` to download the new client assets.
 
 ```bash

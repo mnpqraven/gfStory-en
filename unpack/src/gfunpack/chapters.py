@@ -53,6 +53,7 @@ class ChapterInfo:
     order: int = 1000000
 
 
+@dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class EventStoryInfo:
     id: int = 0
