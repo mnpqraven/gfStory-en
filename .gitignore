@@ -36,3 +36,7 @@ public/images
 public/stories
 public/search
 src/assets/*.json
+
+# Nix
+/result
+.direnv/
