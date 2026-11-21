@@ -41,7 +41,7 @@ const ended = ref(false);
 const auto = ref(false);
 const autoSpeed = ref(1);
 const options = ref<SelectLine['select']>([]);
-const history: [string, string][] = [];
+const history: HistoryLine[] = [];
 let startTime = 0;
 let lastBGM = '';
 

@@ -16,7 +16,7 @@
         pkgs: with pkgs; [
           git
           python312
-          pdm
+          uv
           ffmpeg
           zip
           pngquant
@@ -28,20 +28,22 @@
           ncurses
         ];
 
-      libPath =
-        pkgs:
-        pkgs.lib.makeLibraryPath [
+      shellEnv = pkgs: {
+        LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
           pkgs.stdenv.cc.cc.lib
           pkgs.zlib
           pkgs.libb2
         ];
+        UV_PYTHON = "${pkgs.python312}/bin/python3.12";
+        UV_PYTHON_DOWNLOADS = "never";
+      };
     in
     {
       packages = forAllSystems (pkgs: {
         default = pkgs.writeShellApplication {
           name = "gfstory-build";
           runtimeInputs = deps pkgs;
-          runtimeEnv.LD_LIBRARY_PATH = libPath pkgs;
+          runtimeEnv = shellEnv pkgs;
           text = ''
             cd "$(git rev-parse --show-toplevel)"
             exec bash ./build.sh
@@ -52,7 +54,7 @@
       devShells = forAllSystems (pkgs: {
         default = pkgs.mkShell {
           packages = deps pkgs ++ [ pkgs.just ];
-          LD_LIBRARY_PATH = libPath pkgs;
+          env = shellEnv pkgs;
         };
       });
     };

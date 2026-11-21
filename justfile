@@ -10,3 +10,6 @@ dev:
 build:
     nix build
     ./result/bin/gfstory-build
+
+serve:
+    pnpm exec vite preview

@@ -9,9 +9,8 @@ git submodule foreach git pull origin main
 
 echo -e "${h_open}Setting up Python environment...${h_close}"
 cd unpack
-pdm install
+uv sync
 source .venv/bin/activate
-pip install -r downloader/requirements.txt
 
 echo -e "${h_open}Downloading resources...${h_close}"
 mkdir -p downloader/resdata
