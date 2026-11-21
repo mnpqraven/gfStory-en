@@ -22,15 +22,14 @@ jobs:
           tool-cache: false
           large-packages: false
           swap-storage: false
+      - uses: mfinelli/setup-imagemagick@v7
       - name: Install Dependencies
         run: |
-          sudo apt install ffmpeg pngquant imagemagick libfuse2
+          sudo apt install ffmpeg pngquant
           wget https://github.com/vgmstream/vgmstream-releases/releases/download/nightly/vgmstream-linux-cli.tar.gz
           tar -zxf vgmstream-linux-cli.tar.gz
           mkdir bin
           mv vgmstream-cli bin
-          wget https://imagemagick.org/archive/binaries/magick
-          mv magick bin
           chmod a+x bin/*
           echo "${PWD}/bin" >> $GITHUB_PATH
       - name: Restore Cached Resources
@@ -40,14 +39,14 @@ jobs:
           path: |
             unpack/downloader/output
           key: gf-downloader-resources
-      - name: Setup PDM
-        uses: pdm-project/setup-pdm@v4
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: 3.12
       - name: Setup Python Environment
         run: |
           cd unpack
-          pdm install
-          source .venv/bin/activate
-          pip install -r downloader/requirements.txt
+          uv sync
       - name: Download Resources
         run: |
           cd unpack
@@ -130,9 +129,8 @@ jobs:
           pnpm build-index
           pnpm build
       - name: Publish to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: ${{ secrets.CLOUDFLARE_PROJECT_NAME  }}
-          directory: dist
+          command: pages deploy dist --project-name=gfstory

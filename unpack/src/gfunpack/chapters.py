@@ -52,6 +52,9 @@ class ChapterInfo:
     tag: str = ""
     order: int = 1000000
 
+    campaign_sub_name: str = ''
+    """子章节名称列表，‘;’分隔。"""
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -64,12 +67,19 @@ class EventStoryInfo:
     title: str = ""
     start: str = ""
     first: str = ""
+    mid: str = "" # 只有一处出现，且与 end 同样
     end: str = ""
     is_util: int = 0
     campaign: int = 0
     point: str = ""
     round: str = ""
     step_start_story: str = ""
+
+    background_code: str = ''
+    """选关界面缩略图？"""
+
+    story_playback_sub_id: int = 1
+    """子章节序号。"""
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)

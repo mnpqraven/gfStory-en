@@ -780,6 +780,38 @@ def get_block_list():
             # DJMAX collab
             '-19-1-2.txt', # Same as -19-1-2first.txt
             '-19-2-2.txt',
+
+            # 零电荷
+            '-70-ext-2-1.txt',
+            '-70-ext-4-1.txt',
+            '-70-ext-5-1.txt',
+            # 银染显影
+            '-71-15-ext.txt',
+            '-71-22-ext-1.txt',
+            '-71-22-ext-2.txt',
+            '-71-22-ext-3.txt',
+            # 孤立丛林
+            '-72-ext-1-1.txt',
+            # 卷积核
+            '-74-ext-01.txt',
+            '-74-ext-2-1.txt',
+            '-74-ext-2-2.txt',
+            '-74-ext-2-3.txt',
+            '-74-ext-2-4.txt',
+            # 溯源回归
+            '-75-ext-01.txt',
+            '-75-ext-03.txt',
+            '-75-ext-04.txt',
+            # 虚粒子对
+            '-76-ext-01.txt',
+            '-76-ext-02.txt',
+            '-76-ext-03.txt',
+            '-76-ext-04.txt',
+            '-76-ext-05.txt',
+            '-76-ext-06.txt',
+            # 零态潮汐
+            '-78-1-0.txt',
+            '-78-5-1.txt',
         ]
     )
 
